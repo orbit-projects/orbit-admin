@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'"
+    />
+    <title>Orbit Admin</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./assets/main.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to dashboard</a>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Orbit Admin home">
+          <span class="brand-mark" aria-hidden="true">O</span>
+          <span>Orbit <span class="brand-muted">Admin</span></span>
+        </a>
+        <div class="top-actions">
+          <span class="connection" id="connection-state" role="status">Connecting</span>
+          <button class="button button-secondary" id="refresh-button" type="button">
+            Refresh
+          </button>
+        </div>
+      </header>
+
+      <main id="main" class="layout">
+        <aside class="sidebar" aria-label="Administration sections">
+          <p class="eyebrow">OPERATIONS</p>
+          <nav id="section-navigation" class="section-navigation"></nav>
+          <p class="sidebar-note">Read-only views from the authenticated Core Admin API.</p>
+        </aside>
+
+        <section class="content" aria-labelledby="view-title">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow" id="view-kicker">ORBIT RUNTIME</p>
+              <h1 id="view-title">Loading dashboard</h1>
+              <p class="subheading" id="view-description">Connecting to the application.</p>
+            </div>
+            <span class="updated" id="last-updated"></span>
+          </div>
+
+          <div class="notice" id="notice" role="alert" hidden>
+            <div>
+              <strong id="notice-title">Unable to load Admin data</strong>
+              <p id="notice-message"></p>
+            </div>
+            <a class="button button-secondary" id="sign-in-link" href="/admin/state" hidden>
+              Open Core Admin to authenticate
+            </a>
+          </div>
+
+          <div class="data-card">
+            <div class="data-card-heading">
+              <div>
+                <h2 id="data-title">Application state</h2>
+                <p id="data-caption">Sensitive values are redacted by Core.</p>
+              </div>
+              <span class="read-only-tag">READ ONLY</span>
+            </div>
+            <pre class="json-view" id="data-view" tabindex="0" aria-label="Admin data">{}</pre>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <span>Orbit Admin</span>
+        <span>Requests use the current origin and do not persist credentials.</span>
+      </footer>
+    </div>
+  </body>
+</html>
